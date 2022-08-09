@@ -49,22 +49,35 @@
 			border:8px solid #fff;
 		}
 
+		section {
+			/* Tamaño de la pantalla respetando el ancho de los botones */
+			display: none;
+			position: absolute;
+			top: 0;
+			right: 0;
+			left: 228px; /* El ancho del nav más su padding */
+			bottom: 0;
+
+			/* Centrado vertical y horizontal */
+			align-items: center;
+			justify-content: center;
+		}
+
 		nav li:hover > section{
-			display: block;
+			display: flex;
 		}
 
 		li{
 			cursor:pointer;
 			border-radius:50%;
 		}
+
 		main{
 			margin-top:64px;
 		}
-		section{
-			display:none;
-			position:absolute;
-			left:250px;
-			top:300px;
+
+		/* El window es la parte "visual" */
+		.window{
 			width:550px;
 			padding:8px;
 			border:2px solid rgba(202,32,59,1);
@@ -72,14 +85,15 @@
 			border-radius:16px;
 			box-shadow:0px 0px 20px 2px rgb(31 31 31 / 20%)
 		}
-		section h2{
-			text-align:center;
-			padding:0;
-			margin:8px 0 8px 0;
-		}
-		section p{
-			padding:8px 0 0 0;
-		}
+			.window h2{
+				text-align:center;
+				padding:0;
+				margin:8px 0 8px 0;
+			}
+
+			.window p{
+				padding:8px 0 0 0;
+			}
 	</style>
 </head>
 <body>
@@ -92,59 +106,69 @@
 			<li>
 				<a href="#restore_energy"><img src="images/battery-pack-alt.svg"/></a>
 				<section>
-					<h2>Restaurar energía</h2>
-					<article>
-						<p>//TODO: Añadir imágenes de nonograma</p>
-						<p>Desde la extensión de Twitch se podrán consultar las soluciones de todos los nonogramas para que se sepa en todo momento qué está haciendo el streamer. El chat podrá activar las instrucciones de cada fila y columna usando diferentes comandos según el código del nonograma.</p>
-					</article>
+					<div class="window">
+						<h2>Restaurar energía</h2>
+						<article>
+							<p>//TODO: Añadir imágenes de nonograma</p>
+							<p>Desde la extensión de Twitch se podrán consultar las soluciones de todos los nonogramas para que se sepa en todo momento qué está haciendo el streamer. El chat podrá activar las instrucciones de cada fila y columna usando diferentes comandos según el código del nonograma.</p>
+						</article>
+					</div>
 				</section>
 			</li>
 			<li><a href="#restore_comms"><img src="images/satellite-communication.svg"/></a>
 				<section>
-					<h2>Validar comunicaciones</h2>
-					<article>
-						<p>//TODO: Añadir imágen de mapa</p>
-						<p>Hay cinco nodos disponibles en la tierra.</p>
-						-- Havana, Cuba<br>	
-						-- Honolulu, USA<br>
-						-- Naha, Japón<br>
-						-- Medina, Arabia Saudí<br>
-						-- Madrid, España
-						<p>
-						Las naves tripuladas tienen un sistema para conectar entre nodos automáticamente. En el caso de que las comunicaciones no funcionen correctamente, el tripulante deberá conectar manualmente con el nodo.</p>
-
-						<p>Nota: En órbita geoestacionaria, se podrá navegar entre nodos hasta llegar a la estación deseada.</p>
-					</p>
+					<div class="window">
+						<h2>Validar comunicaciones</h2>
+						<article>
+							<p>//TODO: Añadir imágen de mapa</p>
+							<p>Hay cinco nodos disponibles en la tierra.</p>
+							-- Havana, Cuba<br>	
+							-- Honolulu, USA<br>
+							-- Naha, Japón<br>
+							-- Medina, Arabia Saudí<br>
+							-- Madrid, España
+							<p>
+							Las naves tripuladas tienen un sistema para conectar entre nodos automáticamente. En el caso de que las comunicaciones no funcionen correctamente, el tripulante deberá conectar manualmente con el nodo.</p>
+	
+							<p>Nota: En órbita geoestacionaria, se podrá navegar entre nodos hasta llegar a la estación deseada.</p>
+						</p>
+					</div>
 					</article>
 				</section>
 			</li>
 			<li><a href="#call-earth"><img src="images/network-bars.svg"/></a>
 				<section>
-					<h2>Responder llamada a Central de Tierra</h2>
-					<article>
-						<p>//TODO: Añadir imágen de exclamación</p>
-						<p>Por razones de seguridad, todas las llamadas entrantes deberán ser aceptadas por el puesto de control en tierra.</p>
-
-						<p>Para aceptar una llamada entrante, basta con escribir !aceptar en la consola. En el caso de que la llamada se considere una amenaza o no sea importante, se puede rechazar con el comando !decline</p>
-
-						<p>Cualquier nave puede volver a efectuar una llamada a tierra aunque se haya cancelado anteriormente</p>
-					</article>
+					<div class="window">
+						<h2>Responder llamada a Central de Tierra</h2>
+						<article>
+							<p>//TODO: Añadir imágen de exclamación</p>
+							<p>Por razones de seguridad, todas las llamadas entrantes deberán ser aceptadas por el puesto de control en tierra.</p>
+	
+							<p>Para aceptar una llamada entrante, basta con escribir !aceptar en la consola. En el caso de que la llamada se considere una amenaza o no sea importante, se puede rechazar con el comando !decline</p>
+	
+							<p>Cualquier nave puede volver a efectuar una llamada a tierra aunque se haya cancelado anteriormente</p>
+						</article>
+					</div>
 				</section>
 			</li>
 			<li><a href="#distribute-energy"><img src="images/energy-tank.svg"/></a>
 				<section>
-					<h2>Distribuir energía</h2>
-					<article>
-						<p>Enigma en construcción.</p>
-					</article>
+					<div class="window">
+						<h2>Distribuir energía</h2>
+						<article>
+							<p>Enigma en construcción.</p>
+						</article>
+					</div>
 				</section>
 			</li>
 			<li><a href="#grand_finale"><img src="images/explosion-rays.svg"/></a>
 				<section>
-					<h2>Grand Finale</h2>
-					<article>
-						<p>Enigma en construcción.</p>
-					</article>
+					<div class="window">
+						<h2>Grand Finale</h2>
+						<article>
+							<p>Enigma en construcción.</p>
+						</article>
+					</div>
 				</section>
 			</li>
 		</ul>
