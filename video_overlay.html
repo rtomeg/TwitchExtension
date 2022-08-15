@@ -1,181 +1,163 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
+	<meta charset="utf-8">
 	<title>TwitchEscape</title>
+	<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
 	<style>
-		@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
-		html,body{
-			user-select: none;
-			padding:0;
-			margin:0;
-			overflow:none;
-			color:#fff;
-			font-family: 'Ubuntu', sans-serif;
-		}
-		body{
-			display:flex;
-			gap:64px;
-		}
-		header{
-			display:none;
-		}
-		nav{
-			width:196px;
-			height:100vh;
-			background: linear-gradient(90deg, rgba(202,32,59,1) 0%, rgba(202,32,59,0) 100%); 
-			padding:0 16px;
-		}
-		nav ul{
-			display:flex;
-			height:100%;
-			align-items:center;
-			justify-content:center;
-			gap:16px;
-			flex-direction:column;
-			margin:0;
-			padding:0;
-		}
-		nav li{
-			width:64px;
-			height:64px;
-			padding:32px;
-			margin:0;
-			background-color:#1f1f1f;
-			list-style:none;
-			border-radius:50%;
-			border:8px solid transparent;
-		}
-		nav li:hover{
-			border:8px solid #fff;
+		:root {
+			--li-size: 15vh;
+			--li-border: 1vh;
+			--ul-gap: 2vh;
 		}
 
+		* {
+			box-sizing: border-box;
+		}
+
+		html, body {
+			user-select: none;
+			padding: 0;
+			margin: 0;
+			overflow: hidden;
+			color: #fff;
+			font-family: 'Ubuntu', sans-serif;
+		}
+
+		ul {
+			position: relative;
+			width: calc(var(--li-size) + var(--ul-gap) * 2);
+			height: 100vh;
+			background: linear-gradient(to right, #ca203b 0%, transparent 100%);
+			padding: var(--ul-gap);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: var(--ul-gap);
+			flex-direction: column;
+			margin: 0;
+		}
+
+		li {
+			width: var(--li-size);
+			height: var(--li-size);
+			padding: var(--ul-gap);
+			margin: 0;
+			background-color: #1f1f1f;
+			list-style: none;
+			border-radius: 50%;
+			border: var(--li-border) solid transparent;
+		}
+
+		li img {
+			display: block;
+		}
+
+		li:hover {
+			border: var(--li-border) solid #fff;
+		}
+
+		/* El section es la parte "visual" */
 		section {
 			/* Tamaño de la pantalla respetando el ancho de los botones */
 			display: none;
 			position: absolute;
-			top: 0;
-			right: 0;
-			left: 228px; /* El ancho del nav más su padding */
-			bottom: 0;
-
-			/* Centrado vertical y horizontal */
-			align-items: center;
-			justify-content: flex-start;
+			top: 50%;
+			transform: translateY(-50%);
+			left: 100%;
+			width: 32rem;
+			max-width: calc(100vw - var(--li-size) - var(--ul-gap) * 3);
+			padding: 0.5rem;
+			border: 2px solid #ca203b;
+			background-color: #1f1f1fcc;
+			border-radius: 1rem;
+			box-shadow: 0 0 2rem 2px #f1f1f133
 		}
 
-		nav li:hover > section{
-			display: flex;
+		li:hover > section {
+			display: block;
 		}
 
-		li{
-			cursor:pointer;
-			border-radius:50%;
+		section h2 {
+			text-align: center;
+			padding: 0;
+			margin: 0.5rem 0 0.5rem 0;
 		}
 
-		main{
-			margin-top:64px;
+		section p {
+			padding: 0.5rem 0 0 0;
 		}
-
-		/* El window es la parte "visual" */
-		.window{
-			width:550px;
-			padding:8px;
-			border:2px solid rgba(202,32,59,1);
-			background-color:rgba(31,31,31,80);
-			border-radius:16px;
-			box-shadow:0px 0px 20px 2px rgb(31 31 31 / 20%)
-		}
-			.window h2{
-				text-align:center;
-				padding:0;
-				margin:8px 0 8px 0;
-			}
-
-			.window p{
-				padding:8px 0 0 0;
-			}
 	</style>
 </head>
 <body>
-	<header>
-		<h1>TwitchEscape</h1>
-		<p>Esto es una extesnión del juego TwitchEscape</p>
-	</header>
-	<nav>
-		<ul>
-			<li>
-				<a href="#restore_energy"><img src="images/battery-pack-alt.svg"/></a>
-				<section>
-					<div class="window">
-						<h2>Restaurar energía</h2>
-						<article>
-							<p>//TODO: Añadir imágenes de nonograma</p>
-							<p>Desde la extensión de Twitch se podrán consultar las soluciones de todos los nonogramas para que se sepa en todo momento qué está haciendo el streamer. El chat podrá activar las instrucciones de cada fila y columna usando diferentes comandos según el código del nonograma.</p>
-						</article>
-					</div>
-				</section>
-			</li>
-			<li><a href="#restore_comms"><img src="images/satellite-communication.svg"/></a>
-				<section>
-					<div class="window">
-						<h2>Validar comunicaciones</h2>
-						<article>
-							<p>//TODO: Añadir imágen de mapa</p>
-							<p>Hay cinco nodos disponibles en la tierra.</p>
-							-- Havana, Cuba<br>	
-							-- Honolulu, USA<br>
-							-- Naha, Japón<br>
-							-- Medina, Arabia Saudí<br>
-							-- Madrid, España
-							<p>
-							Las naves tripuladas tienen un sistema para conectar entre nodos automáticamente. En el caso de que las comunicaciones no funcionen correctamente, el tripulante deberá conectar manualmente con el nodo.</p>
-	
-							<p>Nota: En órbita geoestacionaria, se podrá navegar entre nodos hasta llegar a la estación deseada.</p>
-						</p>
-					</div>
-					</article>
-				</section>
-			</li>
-			<li><a href="#call-earth"><img src="images/network-bars.svg"/></a>
-				<section>
-					<div class="window">
-						<h2>Responder llamada a Central de Tierra</h2>
-						<article>
-							<p>//TODO: Añadir imágen de exclamación</p>
-							<p>Por razones de seguridad, todas las llamadas entrantes deberán ser aceptadas por el puesto de control en tierra.</p>
-	
-							<p>Para aceptar una llamada entrante, basta con escribir !aceptar en la consola. En el caso de que la llamada se considere una amenaza o no sea importante, se puede rechazar con el comando !decline</p>
-	
-							<p>Cualquier nave puede volver a efectuar una llamada a tierra aunque se haya cancelado anteriormente</p>
-						</article>
-					</div>
-				</section>
-			</li>
-			<li><a href="#distribute-energy"><img src="images/energy-tank.svg"/></a>
-				<section>
-					<div class="window">
-						<h2>Distribuir energía</h2>
-						<article>
-							<p>Enigma en construcción.</p>
-						</article>
-					</div>
-				</section>
-			</li>
-			<li><a href="#grand_finale"><img src="images/explosion-rays.svg"/></a>
-				<section>
-					<div class="window">
-						<h2>Grand Finale</h2>
-						<article>
-							<p>Enigma en construcción.</p>
-						</article>
-					</div>
-				</section>
-			</li>
-		</ul>
-	</nav>
-	<main>
+	<ul>
+		<li>
+			<img src="images/battery-pack-alt.svg" alt="Restaurar energía">
+			<section>
+				<h2>Restaurar energía</h2>
+				<article>
+					<p>//TODO: Añadir imágenes de nonograma</p>
+					<p>Desde la extensión de Twitch se podrán consultar las soluciones de todos los nonogramas para que se sepa en todo momento qué está haciendo el streamer. El chat podrá activar las instrucciones de cada fila y columna usando diferentes comandos según el código del nonograma.</p>
+				</article>
+			</section>
+		</li>
 
-	</main>
+		<li>
+			<img src="images/satellite-communication.svg" alt="Validar comunicaciones">
+			<section>
+				<h2>Validar comunicaciones</h2>
+				<article>
+					<p>//TODO: Añadir imagen de mapa</p>
+					<p>Hay cinco nodos disponibles en la tierra.</p>
+					-- Havana, Cuba<br>
+					-- Honolulu, USA<br>
+					-- Naha, Japón<br>
+					-- Medina, Arabia Saudí<br>
+					-- Madrid, España
+					<p>
+					Las naves tripuladas tienen un sistema para conectar entre nodos automáticamente. En el caso de que las comunicaciones no funcionen correctamente, el tripulante deberá conectar manualmente con el nodo.</p>
+
+					<p>Nota: En órbita geoestacionaria, se podrá navegar entre nodos hasta llegar a la estación deseada.</p>
+				</article>
+			</section>
+		</li>
+
+		<li>
+			<img src="images/network-bars.svg" alt="Responder llamada a Central de Tierra">
+			<section>
+				<h2>Responder llamada a Central de Tierra</h2>
+				<article>
+					<p>//TODO: Añadir imagen de exclamación</p>
+					<p>Por razones de seguridad, todas las llamadas entrantes deberán ser aceptadas por el puesto de control en tierra.</p>
+
+					<p>Para aceptar una llamada entrante, basta con escribir <code>!aceptar</code> en la consola. En el caso de que la llamada se considere una amenaza o no sea importante, se puede rechazar con el comando <code>!decline</code></p>
+
+					<p>Cualquier nave puede volver a efectuar una llamada a tierra aunque se haya cancelado anteriormente</p>
+				</article>
+			</section>
+		</li>
+
+		<li>
+			<img src="images/energy-tank.svg" alt="Distribuir energía">
+			<section>
+				<h2>Distribuir energía</h2>
+				<article>
+					<p>Enigma en construcción.</p>
+				</article>
+			</section>
+		</li>
+
+		<li>
+			<img src="images/explosion-rays.svg" alt="Grand Finale">
+			<section>
+				<h2>Grand Finale</h2>
+				<article>
+					<p>Enigma en construcción.</p>
+				</article>
+			</section>
+		</li>
+	</ul>
+
 	<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
 </body>
 </html>
