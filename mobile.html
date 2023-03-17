@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
 	<meta charset="utf-8">
 	<title>TwitchEscape</title>
-	<link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Secular+One&display=swap" rel="stylesheet">
 	<style>
 		:root {
-			--li-size: 15vh;
+			--li-size: 12vh;
 			--li-border: 1vh;
 			--ul-gap: 2vh;
+			--img-radius: 2px;
 		}
 
 		* {
@@ -20,22 +21,20 @@
 			padding: 0;
 			margin: 0;
 			overflow: hidden;
-			color: #fff;
-			font-family: 'Ubuntu', sans-serif;
+			color: #000;
+			font-family: 'Secular One', sans-serif;
 		}
 
 		ul {
 			position: relative;
-			width: calc(var(--li-size) + var(--ul-gap) * 2);
-			height: 100vh;
-			background: linear-gradient(to right, #ca203b 0%, transparent 100%);
-			padding: var(--ul-gap);
+			height: 90vh;
 			display: flex;
 			align-items: center;
 			justify-content: center;
 			gap: var(--ul-gap);
 			flex-direction: column;
 			margin: 0;
+			padding-left: 0px;
 		}
 
 		li {
@@ -46,15 +45,13 @@
 			background-color: #1f1f1f;
 			list-style: none;
 			border-radius: 50%;
-			border: var(--li-border) solid transparent;
+			border-width: var(--li-border);
+			border-style: solid;
+			border-color: transparent;
 		}
 
 		li img {
 			display: block;
-		}
-
-		li:hover {
-			border: var(--li-border) solid #fff;
 		}
 
 		/* El section es la parte "visual" */
@@ -65,18 +62,23 @@
 			top: 50%;
 			transform: translateY(-50%);
 			left: 100%;
-			width: 32rem;
+			width: 50vh;
 			max-width: calc(100vw - var(--li-size) - var(--ul-gap) * 3);
 			padding: 0.5rem;
-			border: 2px solid #ca203b;
+			border: var(--img-radius) solid #ff666f;
 			background-color: #1f1f1fcc;
 			border-radius: 1rem;
-			box-shadow: 0 0 2rem 2px #f1f1f133
+			box-shadow: 0 0 2rem var(--img-radius) #1f1f1f33;
+			height: 70vh;
 		}
 
-		li:hover > section {
+		/*li:hover > section {
 			display: block;
-		}
+		}*/
+
+		/*li:hover {
+		  border-color: #83FFFF;
+		}*/
 
 		section h2 {
 			text-align: center;
@@ -87,77 +89,202 @@
 		section p {
 			padding: 0.5rem 0 0 0;
 		}
+
+		/* checkboxes controls*/
+		.visually-hidden {
+			position: absolute;
+			left: -100vw;
+    
+			/* Note, you may want to position the checkbox over top the label and set the opacity to zero instead. It can be better for accessibilty on some touch devices for discoverability. */
+		}
+
+		.page {
+		  border-radius: calc(var(--img-radius)*4);
+		  object-fit: cover;
+		  width: 100%;
+		  height: 100%;
+		}
+
+		.leftMenu {
+			position: relative;
+			width: calc(var(--li-size)*2);
+			background: linear-gradient(to right, #ff666f 0%, transparent 100%);
+			padding: var(--ul-gap);
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: var(--ul-gap);
+			flex-direction: column;
+			margin: 0;
+			height: 100vh;
+		}
+
+		.control-restore {
+		  display: none;
+		}
+
+		/* change this by input[type="checkbox"]:checked+section*/
+		#restore:checked ~ .control-restore {
+		  display: block;
+		}
+
+		.control-communications {
+		  display: none;
+		}
+
+		#communications:checked ~ .control-communications {
+		  display: block;
+		}
+
+		.control-call {
+		  display: none;
+		}
+
+		#call:checked ~ .control-call {
+		  display: block;
+		}
+
+		.control-energy {
+		  display: none;
+		}
+
+		#energy:checked ~ .control-energy {
+		  display: block;
+		}
+
+		.control-oxigen {
+		  display: none;
+		}
+
+		#oxigen:checked ~ .control-oxigen {
+		  display: block;
+		}
+
+		/* lang selectors */
+		div:not([data-lang]) {
+			display: block;
+		}
+
+		div[data-lang] {
+			display: none;
+		}
+
+		/* JUST BE CAREFUL WHIT THIS :'( */
+		#es:checked ~ ul li section div[data-lang="es"] {
+			display: block;
+		}
+
+		#en:checked ~ ul li section div[data-lang="en"] {
+			display: block;
+		}
+
+		#es {
+			display: block;
+		}
+		
+		#en {
+			display: block;
+		}
 	</style>
 </head>
 <body>
-	<ul>
-		<li>
-			<img src="images/battery-pack-alt.svg" alt="Restaurar energía">
-			<section>
-				<h2>Restaurar energía</h2>
-				<article>
-					<p>//TODO: Añadir imágenes de nonograma</p>
-					<p>Desde la extensión de Twitch se podrán consultar las soluciones de todos los nonogramas para que se sepa en todo momento qué está haciendo el streamer. El chat podrá activar las instrucciones de cada fila y columna usando diferentes comandos según el código del nonograma.</p>
-				</article>
-			</section>
-		</li>
+	<script>
+		function toggleCheckboxes(checkbox) {
+			var allCheckBoxes = document.getElementsByName('pagecheckbox');
+			allCheckBoxes.forEach((item) => {
+				if (item !== checkbox)
+					item.checked = false
+					item.parentElement.style.borderColor = 'transparent'
+			});
+			if (checkbox.checked)
+				checkbox.parentElement.style.borderColor = '#83FFFF'
+			else
+				checkbox.parentElement.style.borderColor = 'transparent'
+		}
+	</script>
+	<div class="leftMenu">
+		<input type="radio" name="lang" id="es" checked="checked" />
+		<label for="es">Español</label>
+		<input type="radio" name="lang" id="en" />
+		<label for="en">English</label>
+		<ul>
+			<li class="control-restore-item">
+				<label for="restore">
+					<img src="images/battery-pack-alt.svg" alt="Restaurar energía">
+				</label>
+				<input type="checkbox" id="restore" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+				<section class="control-restore">
+					<div data-lang="es">
+						<img class="page" src="images/es/0100-energia.png" width=100% alt="Restaurar energía">
+					</div>
+					<div data-lang="en">
+						<img class="page" src="images/en/0100-energy.png" width=100% alt="Restore energy">
+					</div>
+				</section>
+			</li>
 
-		<li>
-			<img src="images/satellite-communication.svg" alt="Validar comunicaciones">
-			<section>
-				<h2>Validar comunicaciones</h2>
-				<article>
-					<p>//TODO: Añadir imagen de mapa</p>
-					<p>Hay cinco nodos disponibles en la tierra.</p>
-					-- Havana, Cuba<br>
-					-- Honolulu, USA<br>
-					-- Naha, Japón<br>
-					-- Medina, Arabia Saudí<br>
-					-- Madrid, España
-					<p>
-					Las naves tripuladas tienen un sistema para conectar entre nodos automáticamente. En el caso de que las comunicaciones no funcionen correctamente, el tripulante deberá conectar manualmente con el nodo.</p>
+			<li>
+				<label for="communications">
+					<img src="images/satellite-communication.svg" alt="Validar comunicaciones">
+				</label>
+				<input type="checkbox" id="communications" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+				<section class="control-communications">
+					<div data-lang="es">
+						<img class="page" src="images/es/0200-comunicaciones.png" width=100% alt="Validar comunicaciones">
+					</div>
+					<div data-lang="en">
+						<img class="page" src="images/en/0200-communication.png" width=100% alt="Validate comunications">
+					</div>
+				</section>
+			</li>
 
-					<p>Nota: En órbita geoestacionaria, se podrá navegar entre nodos hasta llegar a la estación deseada.</p>
-				</article>
-			</section>
-		</li>
+			<li>
+				<label for="call">
+					<img src="images/network-bars.svg" alt="Responder llamada a Central de Tierra">
+				</label>
+				<input type="checkbox" id="call" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+				<section class="control-call">
+					<div data-lang="es">
+						<img class="page" src="images/es/0300-llamada.png" width=100% alt="Responder llamada a Central de Tierra">
+					</div>
+					<div data-lang="en">
+						<img class="page" src="images/en/0300-call.png" width=100% alt="Anwser call from earth control">
+					</div>
+				</section>	
+			</li>
 
-		<li>
-			<img src="images/network-bars.svg" alt="Responder llamada a Central de Tierra">
-			<section>
-				<h2>Responder llamada a Central de Tierra</h2>
-				<article>
-					<p>//TODO: Añadir imagen de exclamación</p>
-					<p>Por razones de seguridad, todas las llamadas entrantes deberán ser aceptadas por el puesto de control en tierra.</p>
+			<li>
+				<label for="energy">
+					<img src="images/energy-tank.svg" alt="Distribuir energía">
+				</label>
+				<input type="checkbox" id="energy" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+				<section class="control-energy">
+					<div data-lang="es">
+						<img class="page" src="images/es/0400-distribucion.png" width=100% alt="Distribuir Energía">
+					</div>
+					<div data-lang="en">
+						<img class="page" src="images/en/0400-distribute.png" width=100% alt="Distribute Energy">
+					</div>
+				</section>
+			</li>
 
-					<p>Para aceptar una llamada entrante, basta con escribir <code>!aceptar</code> en la consola. En el caso de que la llamada se considere una amenaza o no sea importante, se puede rechazar con el comando <code>!decline</code></p>
-
-					<p>Cualquier nave puede volver a efectuar una llamada a tierra aunque se haya cancelado anteriormente</p>
-				</article>
-			</section>
-		</li>
-
-		<li>
-			<img src="images/energy-tank.svg" alt="Distribuir energía">
-			<section>
-				<h2>Distribuir energía</h2>
-				<article>
-					<p>Enigma en construcción.</p>
-				</article>
-			</section>
-		</li>
-
-		<li>
-			<img src="images/explosion-rays.svg" alt="Grand Finale">
-			<section>
-				<h2>Grand Finale</h2>
-				<article>
-					<p>Enigma en construcción.</p>
-				</article>
-			</section>
-		</li>
-	</ul>
-
-	<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"></script>
+			<li>
+				<label for="oxigen">
+					<img src="images/explosion-rays.svg" alt="Oxigeno">
+				</label>
+				<input type="checkbox" id="oxigen" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+				<section class="control-oxigen">
+					<div data-lang="es">
+						<img class="page" src="images/es/0401-oxigeno.png" width=100% alt="Oxigeno">
+					</div>
+					<div data-lang="en">
+						<img class="page" src="images/en/0401-oxygen.png" width=100% alt="Oxygen">
+					</div>
+				
+				</section>
+			</li>
+		</ul>
+	</div>
+	<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"/>
 </body>
 </html>
