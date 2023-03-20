@@ -296,7 +296,7 @@
 		function changeOver(target) {
 			// prevent nasty things
 			if (this === target) return;
-			if (isTargetRecognized(target)) return;
+			if (isTargetUnrecognized(target)) return;
 
 			target.style.borderColor = SELECTED_COLOR;
 			target.getElementsByTagName('span')[0].style.color = SELECTED_COLOR;
@@ -307,7 +307,7 @@
 		function changeOff(target){
 			// prevent nasty things
 			if (this === target) return;
-			if (isTargetRecognized(target)) return;
+			if (isTargetUnrecognized(target)) return;
 
 			// change the item only if isnt checked
 			if (target.getElementsByTagName('input').length > 0 &&
@@ -343,11 +343,10 @@
 			event.stopPropagation();
 		}
 
-		function isTargetRecognized(target) {
+		function isTargetUnrecognized(target) {
 			// this can be tricky but we are only we only recognize events from: 
 			// li because are our items
 			// span because are the childs
-			// labels becase the checkboxes event from unselection raise the event from there
 			return (target.tagName !== 'LI' && 
 			target.tagName !== 'SPAN')
 		}
