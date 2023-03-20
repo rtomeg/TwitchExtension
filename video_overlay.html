@@ -72,14 +72,6 @@
 			height: 70vh;
 		}
 
-		/*li:hover > section {
-			display: block;
-		}*/
-
-		/*li:hover {
-		  border-color: #83FFFF;
-		}*/
-
 		section h2 {
 			text-align: center;
 			padding: 0;
@@ -95,7 +87,9 @@
 			position: absolute;
 			left: -100vw;
     
-			/* Note, you may want to position the checkbox over top the label and set the opacity to zero instead. It can be better for accessibilty on some touch devices for discoverability. */
+			/* Note, you may want to position the checkbox over top the label and set 
+			the opacity to zero instead. It can be better for accessibilty on some touch 
+			devices for discoverability. */
 		}
 
 		.page {
@@ -160,7 +154,7 @@
 		  display: block;
 		}
 
-		/* lang selectors */
+		/* lang selectors for images ( pages )*/
 		div:not([data-lang]) {
 			display: block;
 		}
@@ -169,7 +163,9 @@
 			display: none;
 		}
 
-		/* JUST BE CAREFUL WHIT THIS :'( */
+		/* JUST BE CAREFUL WHIT THIS :'(  i know there is a lot of nesting
+		I just i dont know how to make it better using only css and html
+		*/
 		#es:checked ~ ul li section div[data-lang="es"] {
 			display: block;
 		}
@@ -185,34 +181,30 @@
 		#en {
 			display: block;
 		}
+
+		.chapter-title {
+			color: white;
+			font-size: 4vh;
+			text-align: center;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			width:100%;
+			height:100%;
+		}
 	</style>
 </head>
 <body>
-	<script>
-		function toggleCheckboxes(checkbox) {
-			var allCheckBoxes = document.getElementsByName('pagecheckbox');
-			allCheckBoxes.forEach((item) => {
-				if (item !== checkbox)
-					item.checked = false
-					item.parentElement.style.borderColor = 'transparent'
-			});
-			if (checkbox.checked)
-				checkbox.parentElement.style.borderColor = '#83FFFF'
-			else
-				checkbox.parentElement.style.borderColor = 'transparent'
-		}
-	</script>
 	<div class="leftMenu">
-		<input type="radio" name="lang" id="es" checked="checked" />
+		<input type="radio" name="lang" id="es" checked="checked"/>
 		<label for="es">Español</label>
-		<input type="radio" name="lang" id="en" />
+		<input type="radio" name="lang" id="en"/>
 		<label for="en">English</label>
 		<ul>
-			<li class="control-restore-item">
-				<label for="restore">
-					<img src="images/battery-pack-alt.svg" alt="Restaurar energía">
-				</label>
-				<input type="checkbox" id="restore" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+			<li name="item-checkbox">
+				<span class="chapter-title">1</span>
+				<label class="test" for="restore"/>
+				<input type="checkbox" id="restore" name="pagecheckbox" class="visually-hidden"/>
 				<section class="control-restore">
 					<div data-lang="es">
 						<img class="page" src="images/es/0100-energia.png" width=100% alt="Restaurar energía">
@@ -223,11 +215,10 @@
 				</section>
 			</li>
 
-			<li>
-				<label for="communications">
-					<img src="images/satellite-communication.svg" alt="Validar comunicaciones">
-				</label>
-				<input type="checkbox" id="communications" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+			<li name="item-checkbox">
+				<span class="chapter-title">2</span>
+				<label for="communications"/>
+				<input type="checkbox" id="communications" name="pagecheckbox" class="visually-hidden"/>
 				<section class="control-communications">
 					<div data-lang="es">
 						<img class="page" src="images/es/0200-comunicaciones.png" width=100% alt="Validar comunicaciones">
@@ -238,11 +229,10 @@
 				</section>
 			</li>
 
-			<li>
-				<label for="call">
-					<img src="images/network-bars.svg" alt="Responder llamada a Central de Tierra">
-				</label>
-				<input type="checkbox" id="call" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+			<li name="item-checkbox">
+				<span class="chapter-title">3</span>
+				<label for="call"/>
+				<input type="checkbox" id="call" name="pagecheckbox" class="visually-hidden"/>
 				<section class="control-call">
 					<div data-lang="es">
 						<img class="page" src="images/es/0300-llamada.png" width=100% alt="Responder llamada a Central de Tierra">
@@ -253,11 +243,10 @@
 				</section>	
 			</li>
 
-			<li>
-				<label for="energy">
-					<img src="images/energy-tank.svg" alt="Distribuir energía">
-				</label>
-				<input type="checkbox" id="energy" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+			<li name="item-checkbox">
+				<span class="chapter-title">4</span>
+				<label for="energy"/>
+				<input type="checkbox" id="energy" name="pagecheckbox" class="visually-hidden"/>
 				<section class="control-energy">
 					<div data-lang="es">
 						<img class="page" src="images/es/0400-distribucion.png" width=100% alt="Distribuir Energía">
@@ -268,11 +257,10 @@
 				</section>
 			</li>
 
-			<li>
-				<label for="oxigen">
-					<img src="images/explosion-rays.svg" alt="Oxigeno">
-				</label>
-				<input type="checkbox" id="oxigen" name="pagecheckbox" onclick="toggleCheckboxes(this)" class="visually-hidden">
+			<li name="item-checkbox">
+				<span class="chapter-title">4.a</span>
+				<label for="oxigen"/>
+				<input type="checkbox" id="oxigen" name="pagecheckbox" class="visually-hidden"/>
 				<section class="control-oxigen">
 					<div data-lang="es">
 						<img class="page" src="images/es/0401-oxigeno.png" width=100% alt="Oxigeno">
@@ -280,11 +268,90 @@
 					<div data-lang="en">
 						<img class="page" src="images/en/0401-oxygen.png" width=100% alt="Oxygen">
 					</div>
-				
 				</section>
 			</li>
 		</ul>
 	</div>
+	
+	<script>
+		const SELECTED_COLOR = '#83FFFF';
+		const UNSELECTED_BORDER_COLOR = 'transparent';
+		const UNSELECTED_TEXT_COLOR = 'white';
+
+		// initial hover behaivour
+		let allItems = document.getElementsByName('item-checkbox');
+		allItems.forEach((item) => {
+			// these are the LI items
+			item.addEventListener("mouseover", (e) => {changeOver(e.target) });
+			item.addEventListener("mouseout", (e) => {changeOff(e.target) });
+			item.addEventListener("click", (e) => {changeClick(e.target) });
+
+			// this is the span item ( the children )
+			let spanChildren = item.getElementsByTagName('span')[0];
+			spanChildren.addEventListener("mouseover", (e) => {changeOver(e.target.parentNode) });
+			spanChildren.addEventListener("mouseout", (e) => {changeOff(e.target.parentNode) });
+			spanChildren.addEventListener("click", (e) => {changeClick(e.target.parentNode) });
+		});
+
+		function changeOver(target) {
+			// prevent nasty things
+			if (this === target) return;
+			if (isTargetRecognized(target)) return;
+
+			target.style.borderColor = SELECTED_COLOR;
+			target.getElementsByTagName('span')[0].style.color = SELECTED_COLOR;
+
+			event.stopPropagation();
+		}
+
+		function changeOff(target){
+			// prevent nasty things
+			if (this === target) return;
+			if (isTargetRecognized(target)) return;
+
+			// change the item only if isnt checked
+			if (target.getElementsByTagName('input').length > 0 &&
+				!target.getElementsByTagName('input')[0].checked) {
+				target.style.borderColor = UNSELECTED_BORDER_COLOR;
+				if (target.getElementsByTagName('span').length > 0)
+					target.getElementsByTagName('span')[0].style.color = UNSELECTED_TEXT_COLOR;
+			}
+			
+			event.stopPropagation();
+		}
+
+		function changeClick(target) {
+			// prevent nasty things
+			if(this === target) return;
+
+			// get the checkbox for show or hide the element ( via css )
+			let checkbox = target.getElementsByTagName('input')[0];
+
+			var allCheckBoxes = document.getElementsByName('pagecheckbox');
+			allCheckBoxes.forEach((item) => {
+				if (item !== checkbox) {
+					// dissable other checkboxes
+					item.checked = false;
+					changeOff(item.parentNode.parentNode);
+				} else {
+					// toggle the event one and decorate
+					checkbox.checked = !checkbox.checked;
+					if (checkbox.checked) changeOver(target); else changeOff(target);
+				}
+			});
+
+			event.stopPropagation();
+		}
+
+		function isTargetRecognized(target) {
+			// this can be tricky but we are only we only recognize events from: 
+			// li because are our items
+			// span because are the childs
+			// labels becase the checkboxes event from unselection raise the event from there
+			return (target.tagName !== 'LI' && 
+			target.tagName !== 'SPAN')
+		}
+	</script>
 	<script src="https://extension-files.twitch.tv/helper/v1/twitch-ext.min.js"/>
 </body>
 </html>
